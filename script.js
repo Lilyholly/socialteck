@@ -27,6 +27,9 @@ $(function () {
 
   // AjaxでSTATIC FORMSにデータを送信
   $('#submit').on('click', function (event) {
+    //Access-Control-Allow-Originエラーを回避する(教材外) 
+    header("Access-Control-Allow-Origin: *");
+
     // formタグによる送信を拒否
     event.preventDefault();
   
@@ -42,7 +45,7 @@ $(function () {
       // Ajaxでformを送信する
       $.ajax({
         url:'https://api.staticforms.xyz/submit',
-        Type:'POST',
+        type:'POST',
         dataType:'json',
         data:$('#form').serialize(),
         success:function (result) {
